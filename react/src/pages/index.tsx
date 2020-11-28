@@ -19,6 +19,11 @@ export default () => {
               页面传值
               </Link>
           </List.Item>
+          <List.Item>
+              <Link to='/dva'>
+              Dvajs
+              </Link>
+          </List.Item>
       </List>
     </div>
   );

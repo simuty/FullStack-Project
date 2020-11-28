@@ -10,5 +10,6 @@ export default defineConfig({
     { path: '/singleCom', component: '@/pages/base/1singleCom' },
     // 父子组件传值
     { path: '/passValue', component: '@/pages/base/2passValue' },
-  ]
+    { path: '/dva', component: '@/pages/dva/index' },
+  ],
 });
