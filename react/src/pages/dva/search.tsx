@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { SearchBar } from 'antd-mobile';
-
-export interface ISearchProps {}
+export interface ISearchProps {
+    dispatch: Function
+}
 
 export interface ISearchState {
     placeholder: string;
@@ -21,7 +22,22 @@ export default class Search extends React.Component<
         };
     }
 
-    handleSubmit = () => {};
+    // 方法一
+    // handleSubmit = (v: string) => {
+    //     this.props.dispatch({
+    //         // 命名空间+函数名
+    //         type: 'search/getList',
+    //         playload: v
+    //     })
+    // };
+    // 方法二
+    handleSubmit = (v: string) => {
+        this.props.dispatch({
+            // 命名空间+函数名
+            type: 'search/getListAsync',
+            playload: v
+        })
+    };
     handleOnChange = (v:string) => {
         this.setState({
             value: v

@@ -2,6 +2,7 @@ import * as React from 'react';
 import Search from './search';
 import Lists from './list';
 import { connect } from 'dva'
+import {SearchModelType} from '@/models/search';
 
 export interface IDvaProps {}
 
@@ -13,7 +14,6 @@ class Dva extends React.Component<IDvaProps, IDvaState> {
 
         this.state = {};
     }
-
     public render() {
         return (
             <div>
@@ -24,5 +24,38 @@ class Dva extends React.Component<IDvaProps, IDvaState> {
         );
     }
 }
-// @ts-ignore
-export default connect(({search})=>({search}))(Dva)
+// @ts-expect-error
+export default connect(({search}: SearchModelType)=>({search}))(Dva)
+
+
+// import React, { Component } from 'react'
+// import { connect } from 'react-redux'
+
+// interface Props {
+    
+// }
+// interface State {
+    
+// }
+
+// export class index extends Component<Props, State> {
+//     state = {}
+
+//     render() {
+//         return (
+//             <div>
+                
+//             </div>
+//         )
+//     }
+// }
+
+// const mapStateToProps = (state) => ({
+    
+// })
+
+// const mapDispatchToProps = {
+    
+// }
+
+// export default connect(mapStateToProps, mapDispatchToProps)(index)
