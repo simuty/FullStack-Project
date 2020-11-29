@@ -16,6 +16,7 @@ export interface IContextProps {
 export default function Context (props: IContextProps) {
   return (
     <UserContextProvider>
+     <h1>利用 context + hook + provider</h1>
       <App {...props}></App>
     </UserContextProvider>
   );

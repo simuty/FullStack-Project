@@ -26,7 +26,7 @@ export default () => {
           </List.Item>
           <List.Item>
               <Link to='/function'>
-              Hook
+              数据流关系
               </Link>
           </List.Item>
       </List>

@@ -22,6 +22,9 @@ export default function Customize(props: ICustomizeProps) {
     const {loading, result}  = useHttpHook(args);
     console.log({loading, result});
     return <div>
-        <h2 onClick={handleClick}>{title}</h2>
+        <h2>
+            自定义hook，实现更新documentTitle http请求
+        </h2>
+        <h2 onClick={handleClick}> 点击更新title {title}</h2>
     </div>;
 }

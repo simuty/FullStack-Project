@@ -16,19 +16,29 @@ export default class Hook extends React.Component<IHookProps, IHookState> {
     public render() {
         return (
             <div>
+                <h2>数据流管理</h2>
                 <WingBlank>
                     <List>
                         <List.Item>
                             <Link to="/function/hook">Hook</Link>
                         </List.Item>
+                        <WhiteSpace />
+
                         <List.Item>
                             <Link to="/function/context">Context</Link>
                         </List.Item>
+                        <WhiteSpace />
+
                         <List.Item>
-                            <Link to="/function/customize">useTitleHook</Link>
+                            <Link to="/function/customize">Customize</Link>
                         </List.Item>
+                        <WhiteSpace />
+
+                        <List.Item>
+                            <Link to="/function/reactStore">store</Link>
+                        </List.Item>
+                        <WhiteSpace />
                     </List>
-                    <WhiteSpace></WhiteSpace>
                 </WingBlank>
             </div>
         );
