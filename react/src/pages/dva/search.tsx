@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SearchBar } from 'antd-mobile';
 export interface ISearchProps {
-    dispatch: Function
+    dispatch?: Function
 }
 
 export interface ISearchState {
@@ -32,6 +32,7 @@ export default class Search extends React.Component<
     // };
     // 方法二
     handleSubmit = (v: string) => {
+        // @ts-ignore
         this.props.dispatch({
             // 命名空间+函数名
             type: 'search/getListAsync',

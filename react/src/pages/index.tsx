@@ -10,18 +10,23 @@ export default () => {
       <h1 className={styles.title}>Page index</h1>
       <List>
           <List.Item>
-              <Link to='/singleCom'>
+              <Link to='/base/1singleCom'>
               单页面
               </Link>
           </List.Item>
           <List.Item>
-              <Link to='/passValue'>
+              <Link to='/base/2passValue'>
               页面传值
               </Link>
           </List.Item>
           <List.Item>
               <Link to='/dva'>
               Dvajs
+              </Link>
+          </List.Item>
+          <List.Item>
+              <Link to='/function'>
+              Hook
               </Link>
           </List.Item>
       </List>
