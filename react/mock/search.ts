@@ -1,7 +1,7 @@
 /*
  * @Author: simuty
  * @Date: 2020-11-28 17:00:30
- * @LastEditTime: 2020-11-28 17:20:49
+ * @LastEditTime: 2020-11-29 14:43:36
  * @LastEditors: Please set LastEditors
  * @Description:
  */
@@ -18,4 +18,14 @@ export default {
             });
         }, 1000);
     },
+
+    'GET /api/hook/getList': (req: any, res: any) => {
+        setTimeout(() => {
+            res.json({
+                status: 200,
+                data: Array(10).fill(req.query.value),
+            });
+        }, 1000);
+    },
+    
 };

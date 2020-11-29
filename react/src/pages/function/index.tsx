@@ -24,6 +24,9 @@ export default class Hook extends React.Component<IHookProps, IHookState> {
                         <List.Item>
                             <Link to="/function/context">Context</Link>
                         </List.Item>
+                        <List.Item>
+                            <Link to="/function/customize">useTitleHook</Link>
+                        </List.Item>
                     </List>
                     <WhiteSpace></WhiteSpace>
                 </WingBlank>
