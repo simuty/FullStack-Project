@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { TabBar } from 'antd-mobile';
 import { history } from 'umi';
+import { StarOutlined, StarFilled, StarTwoTone } from '@ant-design/icons';
 
 import {
   BsHouse,
@@ -23,9 +24,10 @@ export interface IMenuBarState {
   items: {
     title: string;
     icon: any;
-    selectIcon: any;
+    selectedIcon: any;
     link: string;
   }[];
+  selectedTab: string;
 }
 
 export default class MenuBar extends React.Component<
@@ -36,58 +38,47 @@ export default class MenuBar extends React.Component<
     super(props);
 
     this.state = {
+      selectedTab: 'home',
       items: [
         {
           title: '首页',
           icon: (
-            <BsHouse
-              style={{
-                fontSize: 1.5,
-              }}
-            />
+            <div>
+              <BsHouse />
+            </div>
           ),
-          selectIcon: (
-            <BsHouseFill
-              style={{
-                fontSize: 1.5,
-              }}
-            />
+          selectedIcon: (
+            <div>
+              <BsHouseFill />
+            </div>
           ),
           link: '/',
         },
         {
           title: '订单',
           icon: (
-            <BsBag
-              style={{
-                fontSize: 1.5,
-              }}
-            />
+            <div>
+              <BsBag />
+            </div>
           ),
-          selectIcon: (
-            <BsBagFill
-              style={{
-                fontSize: 1.5,
-              }}
-            />
+          selectedIcon: (
+            <div>
+              <BsBagFill />
+            </div>
           ),
-          link: '/',
+          link: '/order',
         },
         {
           title: '我的',
           icon: (
-            <BsPerson
-              style={{
-                fontSize: 1.5,
-              }}
-            />
+            <div>
+              <BsPerson />
+            </div>
           ),
-          selectIcon: (
-            <BsPersonFill
-              style={{
-                fontSize: 1.5,
-              }}
-            />
+          selectedIcon: (
+            <div>
+              <BsPersonFill />
+            </div>
           ),
           link: '/user',
         },
@@ -96,63 +87,52 @@ export default class MenuBar extends React.Component<
   }
 
   public render() {
-    const { show } = this.props;
+    const { show, pathname } = this.props;
+
+    const home = this.state.items[0];
+    const order = this.state.items[1];
+    const user = this.state.items[2];
+
+    const TabBarItem = TabBar.Item;
+    console.log('show---', show);
+
     return (
       <div className="menu-bar">
-        <TabBar>
+        {/* 无效 */}
+        {/* <TabBar hidden={false}>
           {this.state.items.map(item => {
               console.log(item);
-            <TabBar.Item title={'1111'} key={1}></TabBar.Item>;
+            <TabBar.Item title={item.title} key={item.link}></TabBar.Item>;
           })}
-        </TabBar>
-
-        <h1>1111</h1>
-        {console.log(this.state.items)}
-        <TabBar
-          hidden={false}
-          //   hidden={!show}
-          //   unselectedTintColor="#949494"
-          //   tintColor="#33A3F4"
-          //   barTintColor="#33A3F4"
-        >
-          <TabBar.Item
-            title="Life"
-            key="Life"
-            // icon={<div style={{
-            //   width: '22px',
-            //   height: '22px',
-            //   background: 'url(https://zos.alipayobjects.com/rmsportal/sifuoDUQdAFKAVcFGROC.svg) center center /  21px 21px no-repeat' }}
-            // />
-            // }
-            // selectedIcon={<div style={{
-            //   width: '22px',
-            //   height: '22px',
-            //   background: 'url(https://zos.alipayobjects.com/rmsportal/iSrlOTqrKddqbOmlvUfq.svg) center center /  21px 21px no-repeat' }}
-            // />
-            // }
-            // selected={this.state.selectedTab === 'blueTab'}
+        </TabBar> */}
+        <TabBar hidden={!show}>
+          <TabBarItem
             badge={1}
-            // onPress={() => {
-            // //   this.setState({
-            // //     selectedTab: 'blueTab',
-            // //   });
-            // }}
-            // data-seed="logId"
-          >
-            {/* {this.renderContent('Life')} */}
-          </TabBar.Item>
-
-          {this.state.items.map(item => {
-            console.log(item.title);
-            <TabBar.Item
-              badge={100}
-              key={item.link}
-              title={item.title}
-              //   icon={item.icon}
-              //   selected={item.selectIcon}
-              //   onPress={() => history.push(item.link)}
-            ></TabBar.Item>;
-          })}
+            title={home.title}
+            key={home.link}
+            icon={home.icon}
+            selectedIcon={home.selectedIcon}
+            selected={pathname === home.link}
+            onPress={() => history.push(home.link)}
+          ></TabBarItem>
+          <TabBarItem
+            badge={1}
+            key={order.link}
+            title={order.title}
+            icon={order.icon}
+            selectedIcon={order.selectedIcon}
+            selected={pathname === order.link}
+            onPress={() => history.push(order.link)}
+          />
+          <TabBarItem
+            badge={2}
+            key={user.link}
+            title={user.title}
+            icon={user.icon}
+            selectedIcon={user.selectedIcon}
+            selected={pathname === user.link}
+            onPress={() => history.push(user.link)}
+          />
         </TabBar>
       </div>
     );

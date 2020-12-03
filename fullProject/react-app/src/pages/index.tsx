@@ -7,7 +7,6 @@ import { useLocation } from 'umi';
 export default () => {
   const location = useLocation();
   const paths = ['/', '/user', '/order'];
-
   return (
     <div>
       <MenuBar

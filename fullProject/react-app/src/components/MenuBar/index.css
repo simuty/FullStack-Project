@@ -6,19 +6,19 @@
   width: 100%;
   overflow: visible !important;
 }
-.menu-bar .am-tabs-pane-warp {
+.menu-bar .am-tabs-pane-wrap {
   overflow-y: visible !important;
 }
 .menu-bar .am-tab-bar-item {
   height: auto !important;
 }
-.menu-bar .am-tabs-tab-bar-warp {
+.menu-bar .am-tabs-tab-bar-wrap {
   -ms-flex-negative: 0;
   flex-shrink: 0;
   position: fixed;
   width: 100%;
   bottom: 0px;
   left: 0px;
-  right: 0;
+  right: 0px;
   z-index: 10;
 }

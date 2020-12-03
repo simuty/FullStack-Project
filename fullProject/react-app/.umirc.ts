@@ -5,9 +5,16 @@ export default defineConfig({
     type: 'none',
   },
   routes: [
-    { path: '/', component: '@/pages/index', title: '首页'},
-    // { path: '/', component: '@/pages/home/index', title: '首页'},
-    { path: '/order', component: '@/pages/order/index', title: '订单'},
-    { path: '/user', component: '@/pages/user/index', title: '用户'},
+    {
+      path: '/',
+      // 入口位置
+      component: '@/pages/index',
+      routes: [
+          // 子路由
+        { path: '/', component: '@/pages/home/index', title: '首页'},
+        { path: '/order', component: '@/pages/order/index', title: '订单' },
+        { path: '/user', component: '@/pages/user/index', title: '用户' },
+      ],
+    },
   ],
 });
