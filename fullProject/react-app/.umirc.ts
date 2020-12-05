@@ -8,7 +8,7 @@ export default defineConfig({
     {
       path: '/',
       // 入口位置
-      component: '@/pages/index',
+      component: '@/layouts/index',
       routes: [
           // 子路由
         { path: '/', component: '@/pages/home/index', title: '首页'},
@@ -16,5 +16,6 @@ export default defineConfig({
         { path: '/user', component: '@/pages/user/index', title: '用户' },
       ],
     },
+
   ],
 });
