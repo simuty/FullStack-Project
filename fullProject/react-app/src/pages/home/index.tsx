@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Header from './components/header/index';
+import Header from './components/header';
 import Search from './components/search';
 import Hot from './components/hot';
 import { useHttpHook } from '@/hook/index';
@@ -8,7 +8,7 @@ export interface IHomeProps {}
 
 export default function Home(props: IHomeProps) {
   const [citys, citysLoading] = useHttpHook({
-    url: '/common/citys',
+    url: 'common/citys',
     method: 'GET',
   });
 
@@ -22,7 +22,7 @@ export default function Home(props: IHomeProps) {
       {/* 登陆 */}
       <Header></Header>
       {/* 搜索 */}
-      <Search citys={citys} citysLoading={citysLoading}></Search>
+      <Search citys={citys} citysLoading={false}></Search>
       {/* 热门 */}
       <Hot houses={houses} housesLoading={housesLoading}></Hot>
     </div>

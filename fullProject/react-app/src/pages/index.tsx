@@ -9,12 +9,12 @@ export default () => {
   const paths = ['/', '/user', '/order'];
   return (
     <div>
-      {/* <MenuBar
+      <MenuBar
         show={paths.includes(location.pathname)}
         pathname={location.pathname}
       >
         <h1 className={styles.title}>Page index</h1>
-      </MenuBar> */}
+      </MenuBar>
     </div>
   );
 };

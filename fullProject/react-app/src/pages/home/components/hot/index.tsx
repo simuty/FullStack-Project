@@ -15,14 +15,14 @@ interface IHouseType {
 
 export default function Hot(props: IHotProps) {
 
-  //   const [houseList, setHouseList] = useState(defaultHouseList);
+  const {houses = [], housesLoading = true} = props;
 
   return (
     <div className="hot">
       <h3>最热民宿</h3>
       <div className="hot-lists">
-        {!props.housesLoading &&
-          props.houses.map(item => (
+        {!housesLoading &&
+          houses.map(item => (
             <div className="hot-lists-item">
               <img src={item.img} alt="" />
               <div className="title">{item.title}</div>

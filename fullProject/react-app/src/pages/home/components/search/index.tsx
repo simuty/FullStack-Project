@@ -4,18 +4,17 @@ import dayjs from 'dayjs';
 import { history } from 'umi';
 
 export interface ISearchProps {
-  citys: any[];
+  citys: any;
   citysLoading: boolean;
 }
 
 export default function Search(props: ISearchProps) {
-  //   const defaultCitys = [
-  //     [
-  //       { label: '上海', value: '1000' },
-  //       { label: '北京', value: '1001' },
-  //     ],
-  //   ];
+
+    // !因为先加载后http请求，没有默认值，UI组件会报错，所以设置个默认值。
+  const defaultCitys = [[{ label: '上海', value: '1000' }]];
   const defaultSelectCity = ['1000'];
+
+  const { citys = defaultCitys, citysLoading = false } = props;
 
   //   const [citys, setCitys] = useState(defaultCitys);
   const [selectCity, setSelectCity] = useState(defaultSelectCity);
@@ -57,10 +56,10 @@ export default function Search(props: ISearchProps) {
     <div className="search">
       {/* 可选城市 */}
       <div className="search-addr">
-        {!props.citysLoading && (
+        {!citysLoading && (
           <Picker
             title="城市选择"
-            data={props.citys}
+            data={citys}
             // 选中
             value={selectCity}
             // 是否联动
@@ -79,7 +78,7 @@ export default function Search(props: ISearchProps) {
         <p className="search-time_right">{times}</p>
       </div>
       {/* 点击按钮 */}
-      <Button type="warning" size="large" onClick={handleSearch} >
+      <Button type="warning" size="large" onClick={handleSearch}>
         搜索民宿
       </Button>
       <Calendar

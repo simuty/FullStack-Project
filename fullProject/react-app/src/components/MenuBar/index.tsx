@@ -94,7 +94,6 @@ export default class MenuBar extends React.Component<
     const user = this.state.items[2];
 
     const TabBarItem = TabBar.Item;
-    console.log('show---', show);
 
     return (
       <div className="menu-bar">

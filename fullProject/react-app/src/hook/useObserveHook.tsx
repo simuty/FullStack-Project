@@ -2,13 +2,13 @@ import { useEffect } from 'react';
 
 /**
  * 监听页面滚动
- * @param watch 是否更新
+ * @param watch 是否更新, 传 null; observer触发的时候，触发内部useEffect一次
  * @param ele 元素表示，如id
  * @param callback 监听滚动的回调但是 注意回调函数的写法
  */
 let observer: IntersectionObserver;
 export default function useObserveHook(
-  watch: [],
+  watch: any | any[],
   ele: string,
   callback?: (entries: IntersectionObserverEntry[]) => void,
 ) {

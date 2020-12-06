@@ -1,7 +1,7 @@
 /*
  * @Author: simuty
  * @Date: 2020-12-06 08:19:10
- * @LastEditTime: 2020-12-06 14:55:24
+ * @LastEditTime: 2020-12-06 15:31:14
  * @LastEditors: Please set LastEditors
  * @Description:
  */
@@ -17,7 +17,7 @@ export default {
       });
     } else {
       const data = Mock.mock({
-        'list|6-16': [
+        'list|16': [
           {
             'id|+1': 1,
             hey: kw,

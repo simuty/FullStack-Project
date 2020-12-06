@@ -10,6 +10,8 @@ export default function Test(props: ITestProps) {
     console.log(entries);
   });
 
+  
+
   const handleClick = () => {
     history.push('/');
   };

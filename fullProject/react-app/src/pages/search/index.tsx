@@ -5,9 +5,14 @@ import { useHttpHook, useObserveHook } from '@/hook';
 import './index.less';
 export interface ISearchProps {}
 
+// 页码常量
+// const [PAGESIZE, PAGENUM] = [6, 1];
+
 export default function Search(props: ISearchProps) {
   // 搜索关键字
   const [houseKw, setHouseKw] = useState('');
+  const [submitName, setSubmitName] = useState('');
+
   // 底部是否有数据
   const [showLoading, setShowLoading] = useState(true);
   // 分页
@@ -22,11 +27,11 @@ export default function Search(props: ISearchProps) {
     url: 'house/search',
     method: 'POST',
     body: {
-      kw: 'houseKw',
+      kw: submitName,
       ...pageObj,
     },
     // 3. 监听分页码的更改
-    watch: [pageObj.pageNum],
+    watch: [pageObj.pageNum, submitName],
   });
 
   /**
@@ -35,27 +40,33 @@ export default function Search(props: ISearchProps) {
    * 2. 修改分页数据---更新pageNumm
    * 3. 【监听】分页数据的更改，发送API请求，
    * 4. 【监听】loading的变化，拼装数据
+   * 
+   * 
    */
-  useObserveHook([], '#loading', entries => {
+  useObserveHook(null, '#loading', entries => {
     const isIntersecting = entries[0].isIntersecting; // true: 进入可视界面
     console.log('api_housesLoading', api_housesLoading, isIntersecting);
     if (!api_housesLoading && isIntersecting) {
       // 2. 更改分页数据
       setPageObj({
         ...pageObj,
-        pageNum: pageObj.pageNum++,
+        pageNum: pageObj.pageNum + 1,
       });
     }
   });
 
   // 4. 拼装数据
   useEffect(() => {
-    // showLoading：false说明一个请求已经加载完毕
+    // api_housesLoading：false说明一个请求已经加载完毕
     if (!api_housesLoading && api_houses) {
       if (api_houses.length > 0) {
         // @ts-ignore
         setHouseList([...houseList, ...api_houses]);
+        if (api_houses.length < pageObj.pageSize) {
+          setShowLoading(false);
+        }
       } else {
+        // ShowLoading 设置为false后, isIntersecting不在更新也就不重新请求
         setShowLoading(false);
       }
     }
@@ -63,20 +74,30 @@ export default function Search(props: ISearchProps) {
 
   // handle
   const handleChange = (value: any) => {
-    console.log(value);
     setHouseKw(value);
   };
   const handleCancel = (value: any) => {
-    setHouseKw('');
+    _handleSubmit('');
   };
-  const handleSubmit = (value: any) => {};
+  const handleSubmit = (value: any) => {
+    _handleSubmit(value);
+  };
+  const _handleSubmit = (value: any) => {
+    setSubmitName(value);
+    setHouseKw(value);
+    setPageObj({
+      pageSize: 6,
+      pageNum: 1,
+    });
+    setHouseList([]);
+  };
 
   return (
     <div className="search-page">
       {/* 搜索 */}
       <SearchBar
         placeholder="搜索民宿"
-        // value={houseKw}
+        value={houseKw}
         onChange={handleChange}
         onCancel={handleCancel}
         onSubmit={handleSubmit}
