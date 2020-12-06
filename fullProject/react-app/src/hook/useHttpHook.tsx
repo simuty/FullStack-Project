@@ -8,8 +8,7 @@ export default function useHttpHook(args: {
     headers?: any;
     body?: any;
     watch?: any[];
-}){
-// }): [result: any, loading: boolean] {
+}): [result: any, loading: boolean] {
     const { url, method, headers, body, watch = [] } = args;
     const [result, setResult] = useState();
     const [loading, setLoading] = useState(false);
