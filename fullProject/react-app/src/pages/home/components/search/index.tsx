@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Picker, List, Calendar, Button } from 'antd-mobile';
+import { Picker, List, Calendar, Button, Toast } from 'antd-mobile';
 import dayjs from 'dayjs';
+import { history } from 'umi';
 
 export interface ISearchProps {
   citys: any[];
@@ -23,7 +24,7 @@ export default function Search(props: ISearchProps) {
 
   const handleChangeCity = (value: any) => {
     // console.log(value);
-    // setSelectCity(value);
+    setSelectCity(value);
   };
 
   const handleDate = () => {
@@ -38,7 +39,18 @@ export default function Search(props: ISearchProps) {
   };
 
   const handleSearch = () => {
-    console.log('搜索');
+    if (times.includes('~')) {
+      history.push({
+        pathname: '/search',
+        query: {
+          value: 'sss',
+          startTime: times.split('~')[0],
+          endTime: times.split('~')[1],
+        },
+      });
+    } else {
+      Toast.fail('请选择时间');
+    }
   };
 
   return (
@@ -67,7 +79,7 @@ export default function Search(props: ISearchProps) {
         <p className="search-time_right">{times}</p>
       </div>
       {/* 点击按钮 */}
-      <Button type="warning" size="large" onClick={handleSearch}>
+      <Button type="warning" size="large" onClick={handleSearch} >
         搜索民宿
       </Button>
       <Calendar

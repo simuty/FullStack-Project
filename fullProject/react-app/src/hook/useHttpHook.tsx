@@ -11,17 +11,14 @@ export default function useHttpHook(args: {
 }): [result: any, loading: boolean] {
     const { url, method, headers, body, watch = [] } = args;
     const [result, setResult] = useState();
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
 
     async function http() {
-        const defaultHearder = {
-            'Content-type': 'application/json',
-        };
+        const defaultHearder = new Headers({
+            'Content-Type': 'application/json'
+          })
         let params: any = {
-            headers: {
-                defaultHearder,
-                ...headers,
-            },
+            headers: defaultHearder,
             method,
             body: JSON.stringify(body),
         };

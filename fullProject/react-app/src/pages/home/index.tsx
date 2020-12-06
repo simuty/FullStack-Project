@@ -17,7 +17,6 @@ export default function Home(props: IHomeProps) {
     method: 'GET',
   });
 
-  console.log('--', houses);
   return (
     <div className="home">
       {/* 登陆 */}
