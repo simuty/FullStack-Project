@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { SearchBar, ActivityIndicator } from 'antd-mobile';
-import { useHttpHook, useObserveHook } from '@/hook';
+import { useHttpHook, useObserveHook, useImgHook } from '@/hook';
+import { ShowLoading } from '@/components';
+import { CommonEnum } from "@/enum";
 
 import './index.less';
 export interface ISearchProps {}
@@ -16,10 +18,7 @@ export default function Search(props: ISearchProps) {
   // 底部是否有数据
   const [showLoading, setShowLoading] = useState(true);
   // 分页
-  const [pageObj, setPageObj] = useState({
-    pageSize: 6,
-    pageNum: 1,
-  });
+  const [pageObj, setPageObj] = useState(CommonEnum.PAGEOBJ);
   // 列表数据
   const [houseList, setHouseList] = useState([]);
   // 获取搜索数据
@@ -40,12 +39,11 @@ export default function Search(props: ISearchProps) {
    * 2. 修改分页数据---更新pageNumm
    * 3. 【监听】分页数据的更改，发送API请求，
    * 4. 【监听】loading的变化，拼装数据
-   * 
-   * 
+   *
+   *
    */
-  useObserveHook(null, '#loading', entries => {
+  useObserveHook(null, `#${CommonEnum.LOADING_NAME}`, entries => {
     const isIntersecting = entries[0].isIntersecting; // true: 进入可视界面
-    console.log('api_housesLoading', api_housesLoading, isIntersecting);
     if (!api_housesLoading && isIntersecting) {
       // 2. 更改分页数据
       setPageObj({
@@ -54,6 +52,10 @@ export default function Search(props: ISearchProps) {
       });
     }
   });
+
+  // 图片懒加载
+
+  useImgHook(null, '.item-img', entries => {});
 
   // 4. 拼装数据
   useEffect(() => {
@@ -85,10 +87,7 @@ export default function Search(props: ISearchProps) {
   const _handleSubmit = (value: any) => {
     setSubmitName(value);
     setHouseKw(value);
-    setPageObj({
-      pageSize: 6,
-      pageNum: 1,
-    });
+    setPageObj(CommonEnum.PAGEOBJ);
     setHouseList([]);
   };
 
@@ -110,7 +109,12 @@ export default function Search(props: ISearchProps) {
         ) : (
           houseList.map((item: any) => (
             <div className="item" key={item.id}>
-              <img src={item.img} alt="" />
+              <img
+                className="item-img"
+                src="http://dummyimage.com/200x100/894FC4/FFF.png&text=!"
+                data-src={item.img}
+                alt=""
+              />
               <div className="item-right">
                 <div className="title">{item.title}</div>
                 <div className="price">{item.price}</div>
@@ -119,11 +123,7 @@ export default function Search(props: ISearchProps) {
           ))
         )}
         {/* 底部监听&显示 */}
-        {showLoading ? (
-          <div id="loading">加载更多数据</div>
-        ) : (
-          <div>没有数据了</div>
-        )}
+        <ShowLoading showLoading={showLoading}></ShowLoading>
       </div>
     </div>
   );
