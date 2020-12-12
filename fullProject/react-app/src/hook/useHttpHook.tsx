@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import * as path from 'path';
 import { Toast } from 'antd-mobile';
+import { Http } from '@/util';
 
+// api流向：service->httphook->http
 export default function useHttpHook(args: {
     url: string;
     method: string;
@@ -9,51 +11,14 @@ export default function useHttpHook(args: {
     body?: any;
     watch?: any[];
 }): [result: any, loading: boolean] {
-    const { url, method, headers, body, watch = [] } = args;
+    const { watch } = args;
     const [result, setResult] = useState();
     const [loading, setLoading] = useState(false);
-    async function http() {
-        const defaultHearder = new Headers({
-            'Content-Type': 'application/json'
-          })
-        let params: any = {
-            headers: defaultHearder,
-            method,
-            body: JSON.stringify(body),
-        };
-        // @ts-ignore
-        if (method.toUpperCase === 'GET') {
-            params = undefined;
-        }
-        const host = '/api/';
-        const urlPath = path.join(host, url);
-        return new Promise((resolve, reject) => {
-            // 加载中
-            setLoading(true);
-            fetch(urlPath, params)
-                .then(res => res.json())
-                .then(res => {
-                    const { status } = res;
-                    if (status === 200) {
-                        resolve(res.data);
-                        setResult(res.data);
-                    } else {
-                        // toast 提示
-                        Toast.fail(res.errMsg);
-                        reject(res.errMsg);
-                    }
-                })
-                .catch(err => {
-                    Toast.fail(err);
-                    reject(err);
-                })
-                .finally(() => {
-                    setLoading(false);
-                });
-        });
-    }
+    const _args = Object.assign({
+        ...args, setResult, setLoading
+    })
     useEffect(() => {
-        http()
+        Http(_args)
     }, watch)
     // 返回结果
     return [result, loading]
