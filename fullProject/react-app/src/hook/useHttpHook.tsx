@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import * as path from 'path';
 import { Toast } from 'antd-mobile';
-import { Http } from '@/util';
+import { Http } from '@/utils';
 
 // api流向：service->httphook->http
 export default function useHttpHook(args: {
@@ -11,9 +11,9 @@ export default function useHttpHook(args: {
     body?: any;
     watch?: any[];
 }): [result: any, loading: boolean] {
-    const { watch } = args;
+    const { watch = [] } = args;
     const [result, setResult] = useState();
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const _args = Object.assign({
         ...args, setResult, setLoading
     })

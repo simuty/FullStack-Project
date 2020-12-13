@@ -4,14 +4,16 @@
  * 2. 终端 >dva-to-ts xxx.js 
  * 
  * !注意, 会删除 js文件，最好先备份一个，否则注释啥的都没了。。
+ * !日日日日， 多写了default, 一直不成功。。。
  * 
  * 第二步骤依赖：
  * https://github.com/zj-baozi/react-dva-to-typescript-transform
  */
 
-import * as house from './house'
- export default {
+import house from './house'
+
+export {
      house
- }
+}
 
  

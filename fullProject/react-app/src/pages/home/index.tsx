@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Header from './components/header';
 import Search from './components/search';
 import Hot from './components/hot';
-import { useHttpHook } from '@/hook/index';
+import { useHttpHook } from '@/hook';
 
 export interface IHomeProps {}
 
@@ -13,9 +13,10 @@ export default function Home(props: IHomeProps) {
   });
 
   const [houses, housesLoading] = useHttpHook({
-    url: '/house/hot',
+    url: 'house/hot',
     method: 'GET',
   });
+
 
   return (
     <div className="home">

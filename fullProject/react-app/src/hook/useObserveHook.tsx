@@ -5,6 +5,14 @@ import { useEffect } from 'react';
  * @param watch 是否更新, 传 null; observer触发的时候，触发内部useEffect一次
  * @param ele 元素表示，如id
  * @param callback 监听滚动的回调但是 注意回调函数的写法
+ * 
+ * 
+ * !可以省去外界传ele.
+ * 
+ * 用法
+ * 1. 饮用component中的加载更多组件，其中包含 ele = ‘xxx’
+ * 2. 该hook,取到并监听对应的变化
+ * 3. 回调返回值
  */
 let observer: IntersectionObserver;
 export default function useObserveHook(

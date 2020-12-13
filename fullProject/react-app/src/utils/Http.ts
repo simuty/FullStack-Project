@@ -3,13 +3,13 @@ import * as path from 'path';
 
 export default function Http(args: {
     url: string;
-    method: string;
+    method?: string;
     headers?: any;
     body?: any;
     setLoading?: (l: boolean) => void,
     setResult?: (reslut: any) => void
 }) {
-    const { url, method, headers, body, setLoading, setResult } = args;
+    const { url, method = 'post', headers, body, setLoading, setResult } = args;
 
     const defaultHearder = new Headers({
         'Content-Type': 'application/json'

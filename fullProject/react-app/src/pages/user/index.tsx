@@ -4,7 +4,6 @@ export interface IUserProps {
 }
 
 export default function User (props: IUserProps) {
-    console.log('user---');
   return (
     <div>
       User

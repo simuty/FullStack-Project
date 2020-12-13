@@ -42,7 +42,7 @@ export default function Search(props: ISearchProps) {
    *
    *
    */
-  useObserveHook(null, `#${CommonEnum.LOADING_NAME}`, entries => {
+  useObserveHook(null, CommonEnum.LOADING_NAME_USE, entries => {
     const isIntersecting = entries[0].isIntersecting; // true: 进入可视界面
     if (!api_housesLoading && isIntersecting) {
       // 2. 更改分页数据

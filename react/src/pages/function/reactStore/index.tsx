@@ -5,7 +5,7 @@ import * as store from './store';
 import User from './user'
 
 export interface IStoreProps {}
-
+    
 export default function Store(props: IStoreProps) {
     return (
         <StoreProvider store={store} middleware={[log]}>

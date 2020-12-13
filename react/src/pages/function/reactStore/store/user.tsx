@@ -20,7 +20,7 @@ export default {
         async getUserAsync(dispatch: any, rootState: any, payload: any) {
             await new Promise((resolve) => {
                 setTimeout(() => {
-                    resolve()
+                    resolve(true);
                 }, 1000);
             })
             dispatch({

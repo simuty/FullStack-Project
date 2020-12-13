@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import AwesomeSwiper from 'react-awesome-swiper';
 
-export interface IBannerProps {}
+export interface IBannerProps {
+  banner: Array<{
+    id: string;
+    img: string;
+  }>;
+}
 
 export default function Banner(props: IBannerProps) {
   const defalutConfig = {
@@ -17,27 +22,15 @@ export default function Banner(props: IBannerProps) {
   };
   const [config, setConfig] = useState(defalutConfig);
 
+  const { banner = [] } = props;
   return (
     <AwesomeSwiper config={config} className="banner">
       <div className="swiper-wrapper">
-        <div className="swiper-slide">
-          <img
-            src="http://dummyimage.com/360x200/00405d/FFF&text=%F0%9F%98%84%F0%9F%98%9C"
-            alt=""
-          />
-        </div>
-        <div className="swiper-slide">
-          <img
-            src="http://dummyimage.com/360x200/00405d/FFF&text=%F0%9F%98%84%F0%9F%98%9C"
-            alt=""
-          />
-        </div>
-        <div className="swiper-slide">
-          <img
-            src="http://dummyimage.com/360x200/00405d/FFF&text=%F0%9F%98%84%F0%9F%98%9C"
-            alt=""
-          />
-        </div>
+        {banner.map(item => (
+          <div className="swiper-slide" key={item.id}>
+            <img src={item.img} alt="" />
+          </div>
+        ))}
       </div>
       {/* <div className="swiper-button-prev"></div>
       <div className="swiper-button-next"></div> */}

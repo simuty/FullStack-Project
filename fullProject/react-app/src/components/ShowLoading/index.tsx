@@ -12,7 +12,7 @@ export default function ShowLoading(props: IShowLoadingProps) {
   return (
     <div>
       {showLoading ? (
-        <div id={CommonEnum.LOADING_NAME} className="loading">
+        <div id={CommonEnum.LOADING_NAME_DEFINE} className="loading">
           加载更多数据
         </div>
       ) : (
