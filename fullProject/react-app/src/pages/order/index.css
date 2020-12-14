@@ -1,0 +1,47 @@
+.order-page .am-tabs-tab-bar-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2000;
+}
+.order-page .am-tabs-content-wrap {
+  margin-top: 50px;
+  margin-bottom: 60px;
+}
+.order-page .am-activity-indicator.am-activity-indicator-toast {
+  top: 25px;
+}
+.order-page .order-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 12px;
+  padding: 12px;
+  width: 100%;
+  background: #fff;
+  box-sizing: border-box;
+}
+.order-page .order-item img {
+  width: 120px;
+  height: 80px;
+  object-fit: cover;
+}
+.order-page .order-item .center {
+  flex: 1;
+  margin: 0 12px;
+}
+.order-page .order-item .center .title {
+  font-size: 18px;
+}
+.order-page .order-item .center .price {
+  color: #ff4d6a;
+  padding: 8px 0;
+}
+.order-page .order-item .center .time {
+  color: rgba(0, 0, 0, 0.4);
+}
+.order-page .order-item .pay {
+  margin-right: 4px;
+}
