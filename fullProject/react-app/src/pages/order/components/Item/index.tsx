@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Button } from 'antd-mobile';
 
 // props展开即可
 export interface IItemProps {
@@ -12,6 +13,16 @@ export interface IItemProps {
 }
 
 export default function Item(props: IItemProps) {
+  const renderPay = (type: number) => {
+    switch (type) {
+      case 0:
+        return <Button type="warning" size='small' >去支付</Button>;
+      case 1:
+        return <Button type="ghost" size='small' >已支付</Button>;
+      default:
+        break;
+    }
+  };
   const {
     id = '',
     img = '',
@@ -28,7 +39,7 @@ export default function Item(props: IItemProps) {
         <div className="price">￥{price}</div>
         <div className="time">{createTime}</div>
       </div>
-      <div className="pay">{type === 0 ? '待支付' : '已支付'}</div>
+      <div className="pay">{renderPay(type)}</div>
     </div>
   );
 }
