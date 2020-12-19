@@ -31,10 +31,8 @@ export function onRouteChange(route: any) {
  * 比如用于渲染之前做权限校验
  */
 export function render(oldRender: any) {
-    console.log('oldRender--', oldRender);
+    // console.log('oldRender--', oldRender);
     oldRender()
-
-
     // fetch('/api/auth').then(auth => {
     //     if (auth.isLogin) { oldRender() }
     //     else {

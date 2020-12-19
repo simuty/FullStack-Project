@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import { Picker, List, Calendar, Button, Toast } from 'antd-mobile';
 import dayjs from 'dayjs';
 import { history } from 'umi';
@@ -8,9 +8,8 @@ export interface ISearchProps {
   citysLoading: boolean;
 }
 
-export default function Search(props: ISearchProps) {
-
-    // !因为先加载后http请求，没有默认值，UI组件会报错，所以设置个默认值。
+function Search(props: ISearchProps) {
+  // !因为先加载后http请求，没有默认值，UI组件会报错，所以设置个默认值。
   const defaultCitys = [[{ label: '上海', value: '1000' }]];
   const defaultSelectCity = ['1000'];
 
@@ -92,3 +91,14 @@ export default function Search(props: ISearchProps) {
     </div>
   );
 }
+
+// 判断是否渲染
+function judge(prev: ISearchProps, next: ISearchProps) {
+  if (prev.citys === next.citys && prev.citysLoading === next.citysLoading) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+export default memo(Search, judge);

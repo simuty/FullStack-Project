@@ -54,7 +54,7 @@ const Login: CollectionModelType = {
             if (result) {
                 Toast.success('登陆成功');
                 cookie.set('user', JSON.stringify(result));
-                const from = urlGet('from');
+                const from = urlGet('from') || '/';
                 history.push({
                     pathname: from
                 })

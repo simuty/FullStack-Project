@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import { history } from 'umi';
 
 export interface IHotProps {
@@ -14,7 +14,7 @@ interface IHouseType {
   id: number;
 }
 
-export default function Hot(props: IHotProps) {
+function Hot(props: IHotProps) {
   const { houses = [], housesLoading = true } = props;
 
   const handleClick = (id: number) => {
@@ -44,3 +44,6 @@ export default function Hot(props: IHotProps) {
     </div>
   );
 }
+
+export default memo(Hot);
+
