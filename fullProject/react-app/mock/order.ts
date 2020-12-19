@@ -7,7 +7,7 @@ export default {
     const data = mock({
       'list|8': [
         {
-          id: () => Random.id(),
+          id: () => Random.guid(),
           img: () => Random.image('146x100', '#00405d', '#FFF', '🚩'),
           title: () => Random.cname(),
           price: () => Random.integer(0, 20),

@@ -12,7 +12,7 @@ export default function User(props: IUserProps) {
     const {
         // @ts-ignore
         user: { id, userName, avatar, tel, sign, getUserAsync }
-    }= useStoreHook();
+    } = useStoreHook();
 
     const handleClick = () => {
         history.push({
@@ -25,6 +25,9 @@ export default function User(props: IUserProps) {
 
     const handleLogout = () => {
         //   logoutAsync();
+        history.push({
+            pathname: '/login'
+        });
     };
 
     useEffect(() => {

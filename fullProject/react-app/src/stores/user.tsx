@@ -18,7 +18,7 @@ type CollectionModelType = {
     };
 };
 const User: CollectionModelType = {
-    namespace: 'collection',
+    namespace: 'user',
     state: {
         id: '',
         userName: '',

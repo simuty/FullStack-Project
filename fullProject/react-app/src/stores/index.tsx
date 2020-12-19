@@ -12,10 +12,11 @@
 
 import house from './house'
 import user from './user'
+import login from './login'
 
 export {
      house,
-     user
+     user,login
 }
 
  

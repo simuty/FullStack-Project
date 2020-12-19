@@ -12,8 +12,10 @@ export default defineConfig({
       routes: [
           // 子路由
         { path: '/', component: '@/pages/home/index', title: '首页'},
-        { path: '/order', component: '@/pages/order/index', title: '订单' },
-        { path: '/user', component: '@/pages/user/index', title: '用户' },
+        { path: '/register', component: '@/pages/register/index', title: '注册'},
+        { path: '/login', component: '@/pages/login/index', title: '登录'},
+        { path: '/order', component: '@/pages/order/index', auth: true, title: '订单' },
+        { path: '/user', component: '@/pages/user/index', auth: true, title: '用户' },
         { path: '/user/edit', component: '@/pages/user/edit/index', title: '编辑' },
         { path: '/search', component: '@/pages/search', title: '搜索' },
         { path: '/house', component: '@/pages/house/index', title: '详情' },
