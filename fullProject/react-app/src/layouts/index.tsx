@@ -5,6 +5,7 @@ import { useLocation } from 'umi';
 import {StoreProvider} from 'think-react-store';
 import * as stores from '@/stores'
 import log from 'think-react-store/middlewares/log';
+import '@/global.less'
 
 export default (props: any) => {
     const location = useLocation();
